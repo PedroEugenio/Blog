@@ -7,20 +7,34 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= link_to "Home", root_path %>
 
-<% if !user_signed_in? %>
-<%= link_to "Sign Up", new_user_registration_path %>
-<%= link_to "Sign In", new_user_session_path %>
-<% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+      <% if !user_signed_in? %>
+        <a class="nav-item nav-link" href="/users/sign_up">Sign Up</a>
+        <a class="nav-item nav-link" href="/users/sign_in">Sign In</a>
+      <% end %> 
+      <% if user_signed_in? %>
+        <% if !current_page?(new_post_path) %>
+          <a class="nav-item nav-link" href="/posts/new">New Post</a>
+        <%end%>
+        <%= link_to '<li class="nav-item nav-link">Sign Out</li>'.html_safe, destroy_user_session_path, method: :delete %>
+      <%end%>
+    </div>
+  </div>
+</nav>
 
-<% if user_signed_in? %>
-<%= link_to("Sign Out", destroy_user_session_path, method: :delete) %>
-<% end %>  
-
+<div class="container-fluid">
   <body>
     <%= yield %>
   </body>
+</div>
+  
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 </html>
