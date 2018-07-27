@@ -9,6 +9,9 @@
   </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="../telegram.png" width="30" height="30" alt="">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,17 +27,17 @@
           <a class="nav-item nav-link" href="/posts/new">New Post</a>
         <%end%>
         <%= link_to '<li class="nav-item nav-link">Sign Out</li>'.html_safe, destroy_user_session_path, method: :delete %>
+        <a class="nav-item nav-link" href="/users/edit">Profile</a>
       <%end%>
     </div>
   </div>
 </nav>
 
-<div class="container-fluid">
+
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
-</div>
-  
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+
 </html>

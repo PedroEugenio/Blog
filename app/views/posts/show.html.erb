@@ -3,14 +3,14 @@
 <h1>
   <%= @post.title %>
 </h1>
-
+<br>
 <div>
-  <strong>Content:</strong>
-  <%= @post.content %>
+  <%= image_tag(@post.image.url) if @post.image? %>
 </div>
 <br>
 <div>
-<%= image_tag(@post.image.url) if @post.image? %>
+  <strong>Content:</strong>
+  <%= @post.content %>
 </div>
 <br>
 <%= link_to '<button type="button" class="btn btn-primary">Edit</button>'.html_safe, edit_post_path(@post) %> 
